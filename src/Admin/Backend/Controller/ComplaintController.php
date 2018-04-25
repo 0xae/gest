@@ -282,6 +282,7 @@ class ComplaintController extends Controller {
 
         $em->persist($entity);
         $em->flush();
+
         return new JsonResponse($object);
     }
 
