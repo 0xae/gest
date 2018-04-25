@@ -1,7 +1,3 @@
-# jms_security_extra:
-#     secure_all_services: false
-#     expressions: true
-
 security:
     encoders:
         FOS\UserBundle\Model\UserInterface: bcrypt
@@ -16,31 +12,22 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
-        dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        nc:
-            pattern: /nc(.*)
-            form_login:
-                login_path: /nc/login
-                check_path: /nc/login_check
-                default_target_path: "/administration/dashboard"
-                failure_path: /nc/login
-                provider: fos_userbundle
-                csrf_provider: form.csrf_provider
-            logout:
-                target: /
-            anonymous: true
         main:
             pattern: ^/
             form_login:
+                #rediciona para uma pagina segura quando login foi sucesso
                 default_target_path: "/administration/dashboard"
+                #caso login falhar vai cair na tela de login de novo
                 failure_path: /
                 provider: fos_userbundle
+                # csrf_token_generator: security.csrf.token_manager
+                # if you are using Symfony < 2.8, use the following config instead:
                 csrf_provider: form.csrf_provider
+
             logout:
-                target: /
-            anonymous: true
+                #quando fazer logout rediciona para pagina de login
+                    target: /
+            anonymous:    true
 
     access_control:
         # so usuario nao autenticado pode fazer login

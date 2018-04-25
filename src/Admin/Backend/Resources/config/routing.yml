@@ -134,10 +134,3 @@ sga_homepage:
     path:     /
     defaults: { _controller: BackendBundle:Security:login }
 
-nc_login:
-    path:     /nc/login
-    defaults: { _controller: BackendBundle:NCSecurity:login }
-
-nc_check:
-    pattern:  /nc/login_check
-    defaults: { _controller: FOSUserBundle:NCSecurity:check }

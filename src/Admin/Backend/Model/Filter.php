@@ -66,6 +66,9 @@ class Filter {
             }
         }
 
+        $em->flush();
+        $em->clear();
+
         $pageIdx = !array_key_exists('page', $_GET) ? 1 : $_GET['page'];
         $perPage = Settings::PER_PAGE;
 
