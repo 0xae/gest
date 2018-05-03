@@ -51,6 +51,21 @@ class Document {
     private $createdBy;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="context", type="string", length=45, nullable=true)
+     */
+    private $context;
+
+    public function setContext($value) {
+        $this->context = $value;
+    }
+
+    public function getContext() {
+        return $this->context;
+    }
+
+    /**
      * Get id
      *
      * @return integer 

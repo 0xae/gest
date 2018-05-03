@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Admin\Backend\Entity\Upload;
 use Admin\Backend\Form\UploadType;
+use Admin\Backend\Model\Settings;
 
 /**
  * Upload controller.
@@ -25,7 +26,8 @@ class UploadController extends Controller {
 
         $q = $this->container
             ->get('sga.admin.filter')
-            ->from($em, Upload::class, $perPage, ($pageIdx-1)*$perPage);
+            ->from($em, Upload::class, $perPage, ($pageIdx-1)*$perPage,
+                    ['context' => Settings::SGRS_CTX]);
 
         $fanta = $this->container
             ->get('sga.admin.table.pagination')

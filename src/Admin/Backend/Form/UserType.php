@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityRepository;
+use Admin\Backend\Model\Settings;
 
 class UserType extends AbstractType {
     /**
@@ -32,6 +33,7 @@ class UserType extends AbstractType {
                 'class' => 'BackendBundle:AppEntity',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
+                      ->where("u.context = '".Settings::SGRS_CTX."'")
                       ->orderBy('u.name', 'ASC');
                 },
                 'choice_label' => 'name'                
@@ -40,6 +42,7 @@ class UserType extends AbstractType {
                 'class' => 'BackendBundle:Profile',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
+                      ->where("u.context = '".Settings::SGRS_CTX."'")
                       ->orderBy('u.name', 'ASC');
                 },
                 'choice_label' => 'name'                

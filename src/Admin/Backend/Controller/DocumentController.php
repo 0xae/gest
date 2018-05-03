@@ -28,7 +28,8 @@ class DocumentController extends Controller {
         $q = $this->container
             ->get('sga.admin.filter')
             ->from($em, Document::class, $perPage,
-                        ($pageIdx-1)*$perPage);
+                ($pageIdx-1)*$perPage,
+                ['context' => Settings::SGRS_CTX]);
 
         $fanta = $this->container
             ->get('sga.admin.table.pagination')

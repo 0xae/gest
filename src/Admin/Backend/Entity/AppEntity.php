@@ -58,6 +58,21 @@ class AppEntity {
      */
     private $createdBy;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="context", type="string", length=45, nullable=true)
+     */
+    private $context;
+
+    public function setContext($value) {
+        $this->context = $value;
+    }
+
+    public function getContext() {
+        return $this->context;
+    }
+
     public function setCode($value) {
         $this->code = $value;
     }
