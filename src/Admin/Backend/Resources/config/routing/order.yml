@@ -1,0 +1,30 @@
+administration_Order:
+    path:     /
+    defaults: { _controller: "BackendBundle:Order:index" }
+
+administration_Order_show:
+    path:     /{id}/show
+    defaults: { _controller: "BackendBundle:Order:show" }
+
+administration_Order_new:
+    path:     /new
+    defaults: { _controller: "BackendBundle:Order:new" }
+
+administration_Order_create:
+    path:     /create
+    defaults: { _controller: "BackendBundle:Order:create" }
+    methods:  POST
+
+administration_Order_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BackendBundle:Order:edit" }
+
+administration_Order_update:
+    path:     /{id}/update
+    defaults: { _controller: "BackendBundle:Order:update" }
+    methods:  [POST, PUT]
+
+administration_Order_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BackendBundle:Order:delete" }
+    methods:  [POST, DELETE]

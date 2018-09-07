@@ -1,3 +1,11 @@
+backend_administration_Order:
+    resource: "@BackendBundle/Resources/config/routing/order.yml"
+    prefix:   /administration/Order
+
+backend_administration_Product:
+    resource: "@BackendBundle/Resources/config/routing/product.yml"
+    prefix:   /administration/Product
+
 backend_administration_Location:
     resource: "@BackendBundle/Resources/config/routing/location.yml"
     prefix:   /administration/Location

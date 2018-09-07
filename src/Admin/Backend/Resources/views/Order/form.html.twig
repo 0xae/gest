@@ -1,0 +1,25 @@
+{{ form_start(form) }}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+    <div class="row">
+        <div class="col-md-12">
+                                                        <div class="form-group">
+                    <label>quantity</label>
+                    {{ form_widget(form.quantity) }}
+                </div>
+                                                <div class="form-group">
+                    <label>obs</label>
+                    {{ form_widget(form.obs) }}
+                </div>
+                                                <div class="form-group">
+                    <label>status</label>
+                    {{ form_widget(form.status) }}
+                </div>
+                                                <div class="form-group">
+                    <label>createdAt</label>
+                    {{ form_widget(form.createdAt) }}
+                </div>
+                            </div>
+        {{ form(form) }}
+    </div>    
+{{ form_end(form) }}
+

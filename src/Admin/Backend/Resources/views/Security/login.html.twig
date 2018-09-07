@@ -6,10 +6,10 @@
 
 <style>
 body {
-    font-family: Helvetica;
+	font-family: Helvetica;
 }
 .app-footer {
-    display: none;
+	display: none;
 }
 
 .login-page {
@@ -17,126 +17,126 @@ body {
 
 .login-box,
 .register-box {
-    width: 360px;
-    /* no need for this shit anymore
-    margin: 8% 31%;
-    */
+	width: 360px;
+	/* no need for this shit anymore
+	margin: 8% 31%;
+	*/
 }
 
 .input-group {
-    border: 1px solid #ccc;
-    padding: 3px;
-    border-radius: 20px;
+	border: 1px solid #ccc;
+	padding: 3px;
+	border-radius: 20px;
 }
 
 .input-group input {
-    font-size: 18px;
-    border: none;
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
+	font-size: 18px;
+	border: none;
+	border-top-right-radius: 40px;
+	border-bottom-right-radius: 40px;
 }
 
 .input-group input:focus {
-    border-color: transparent;    
+	border-color: transparent;    
 }
 
 .input-group .input-group-addon {
-    border-radius: 20px;
-    background-color: #BF1F7B;
-    color: #fff;
-    border-color: #BF1F7B;
+	border-radius: 20px;
+	background-color: #BF1F7B;
+	color: #fff;
+	border-color: #BF1F7B;
 }
 
 .input-group .input-group-addon span.fa {
-    font-size: 20px;
+	font-size: 20px;
 }
 
 body {
-    background-image: url('{{ asset('FundoEcraSistemaSGQ.jpg') }}');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height:100%;
+	background-image: url('{{ asset('FundoEcraSistemaSGQ.jpg') }}');
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	height:100%;
 }
 </style>
 
 <body class="hold-transition login-page">
-    <div class="">
-    </div>
-    {% block content %}
-        {% block fos_user_content %}
-            <div class="login-box">
-                <div class="login-box-body" style="border-radius:20px;border:1px solid #ccc;">
-                    <center>
-                        {% image '@BackendBundle/Resources/public/img/arfa.jpg' %}
-                        <div class="login-logo" style="margin-bottom: 0px">
-                            <img src="{{ asset_url }}" width="200" alt="ARFA LOGO" />
-                        </div>
-                        {% endimage %}
+	<div class="">
+	</div>
+	{% block content %}
+		{% block fos_user_content %}
+			<div class="login-box">
+				<div class="login-box-body" style="border-radius:20px;border:1px solid #ccc;">
+					<center>
+						{% image '@BackendBundle/Resources/public/img/arfa.jpg' %}
+						<div class="login-logo" style="margin-bottom: 0px">
+							<img src="{{ asset_url }}" width="200" alt="ARFA LOGO" />
+						</div>
+						{% endimage %}
 
-                        {# <a href="#" style="color:#BF1F7B;text-transform:uppercase;margin-bottom:15px;margin-top:10px;font-size:15px;text-align:center;">
-                            <b>Gestão de Ocorrências Arfa</b>
-                        </a> #}
-                    </center>
+						{# <a href="#" style="color:#BF1F7B;text-transform:uppercase;margin-bottom:15px;margin-top:10px;font-size:15px;text-align:center;">
+							<b>Gestão de Ocorrências Arfa</b>
+						</a> #}
+					</center>
 
-                    <!-- /.login-logo -->
-                    <form action={{ path("fos_user_security_check") }} method="post" style="margin-top:30px;clear:both">
-                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+					<!-- /.login-logo -->
+					<form action={{ path("fos_user_security_check") }} method="post" style="margin-top:30px;clear:both">
+						<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-                        <div class="form-group has-feedback">
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">
-                                    <span class="fa fa-user"></span>
-                                </span>
-                                <input type="text" class="form-control" placeholder='Nome do usuário' name="_username" value="{{ last_username }}" required="required">
-                            </div>
-                        </div>
+						<div class="form-group has-feedback">
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">
+									<span class="fa fa-user"></span>
+								</span>
+								<input type="text" class="form-control" placeholder='Nome do usuário' name="_username" value="{{ last_username }}" required="required">
+							</div>
+						</div>
 
-                        <div class="form-group has-feedback">
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">
-                                    <span class="fa fa-lock"></span>
-                                </span>
-                                <input type="password" class="form-control" placeholder={{ 'security.login.password'|trans({}, 'FOSUserBundle') }} name="_password" required="required">
-                            </div>
-                        </div>
+						<div class="form-group has-feedback">
+							<div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">
+									<span class="fa fa-lock"></span>
+								</span>
+								<input type="password" class="form-control" placeholder={{ 'security.login.password'|trans({}, 'FOSUserBundle') }} name="_password" required="required">
+							</div>
+						</div>
 
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success btn-block" style="border-color:#BF1F7B;background-color: #BF1F7B;border-radius:20px;"  value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}">
-                                <span class="fa fa-check pull-left" style="font-size:20px;margin-top:5px;"></span>
-                                <span style="font-size:20px">Entrar</span>
-                            </button>
-                        </div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-success btn-block" style="border-color:#BF1F7B;background-color: #BF1F7B;border-radius:20px;"  value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}">
+								<span class="fa fa-check pull-left" style="font-size:20px;margin-top:5px;"></span>
+								<span style="font-size:20px">Entrar</span>
+							</button>
+						</div>
 
-                        <div class="row">
-                            <div class="col-xs-8">
-                            <div class="checkbox icheck" style="margin-left: 21px;">
-                                <label> <input type="checkbox"  name="_remember_me" value="on"> Lembrar me </label>
-                            </div>
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-xs-4">
-                            </div>
-                            <!-- /.col -->
-                        </div>
-                        {% if error %}
-                            <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
-                        {% endif %}
-                    </form>
-                </div>
-                <!-- /.login-box-body -->
-            </div>
-            {# <div style="text-align: center;margin:auto;">
-                <h4 style="margin-bottom:0px;">Qualidade e Seguran&ccedil;a ao servi&ccedil;o de Todos!</h4>
+						<div class="row">
+							<div class="col-xs-8">
+							<div class="checkbox icheck" style="margin-left: 21px;">
+								<label> <input type="checkbox"  name="_remember_me" value="on"> Lembrar me </label>
+							</div>
+							</div>
+							<!-- /.col -->
+							<div class="col-xs-4">
+							</div>
+							<!-- /.col -->
+						</div>
+						{% if error %}
+							<div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+						{% endif %}
+					</form>
+				</div>
+				<!-- /.login-box-body -->
+			</div>
+			{# <div style="text-align: center;margin:auto;">
+				<h4 style="margin-bottom:0px;">Qualidade e Seguran&ccedil;a ao servi&ccedil;o de Todos!</h4>
 
-                <a href="http://www.arfa.cv" style="color: #BF1F7B">
-                    www.arfa.cv
-                </a>
+				<a href="http://www.arfa.cv" style="color: #BF1F7B">
+					www.arfa.cv
+				</a>
 
-                <p style="margin-top:20px"><strong>&copy; POWERED BY ARFA - 2018</strong></p>
-            </div> #}
-        {% endblock fos_user_content %}
-    {% endblock %}
+				<p style="margin-top:20px"><strong>&copy; POWERED BY ARFA - 2018</strong></p>
+			</div> #}
+		{% endblock fos_user_content %}
+	{% endblock %}
 </body>
 
 {% endblock %}

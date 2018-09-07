@@ -1,0 +1,30 @@
+administration_Product:
+    path:     /
+    defaults: { _controller: "BackendBundle:Product:index" }
+
+administration_Product_show:
+    path:     /{id}/show
+    defaults: { _controller: "BackendBundle:Product:show" }
+
+administration_Product_new:
+    path:     /new
+    defaults: { _controller: "BackendBundle:Product:new" }
+
+administration_Product_create:
+    path:     /create
+    defaults: { _controller: "BackendBundle:Product:create" }
+    methods:  POST
+
+administration_Product_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BackendBundle:Product:edit" }
+
+administration_Product_update:
+    path:     /{id}/update
+    defaults: { _controller: "BackendBundle:Product:update" }
+    methods:  [POST, PUT]
+
+administration_Product_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BackendBundle:Product:delete" }
+    methods:  [POST, DELETE]
