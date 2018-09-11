@@ -8,18 +8,18 @@
           {% block title %}Bem vindo!{% endblock %}
         </title>
 
+        <link rel="stylesheet" 
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+        <link rel="stylesheet" 
+            href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
         {% stylesheets
-            '@BackendBundle/Resources/public/css/bootstrap.min.css'
-            '@BackendBundle/Resources/public/css/font-awesome.min.css'
-            '@BackendBundle/Resources/public/css/ionicons.min.css'
-            '@BackendBundle/Resources/public/css/jquery-jvectormap-1.2.2.css'
             '@BackendBundle/Resources/public/css/AdminLTE.min.css'
             '@BackendBundle/Resources/public/css/blue.css'
             '@BackendBundle/Resources/public/css/pace.min.css'
             '@BackendBundle/Resources/public/css/_all-skins.min.css'
             '@BackendBundle/Resources/public/css/app.css'
-            '@BackendBundle/Resources/public/css/daterangepicker.css'
-            '@BackendBundle/Resources/public/lib/editor/trumbowyg.min.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
@@ -34,10 +34,8 @@
                 width: 100%; 
                 height: 100%; 
                 z-index: 9999; 
-                background: 
-                    {% image '@BackendBundle/Resources/public/img/loading.gif' %}
-                    url({{ asset_url }}) center no-repeat #fff; 
-                    {% endimage %}                
+                color: rgb(0,255,0);
+                background-color: #fff;
             }
 
             h3.app-title {
@@ -158,7 +156,9 @@
     </head>
 
     <body class="skin-blue sidebar-mini pace-done fixed" ng-app="app">
-        <div class="loading"></div>
+        <div class="loading">
+            Carregando...
+        </div>
 
         {% block body %}
             <div class="wrapper">
