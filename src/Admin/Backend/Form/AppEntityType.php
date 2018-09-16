@@ -15,7 +15,7 @@ class AppEntityType extends AbstractType {
         $builder
             ->add('name')
             ->add('code')
-            ->add('description')
+            ->add('description', 'textarea')
             ->add('submit', 'submit', array(
                 'label' => 'Enviar formulário',
                 'attr' => array(

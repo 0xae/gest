@@ -27,6 +27,7 @@ class AppEntityController extends Controller {
 
         $q = $this->container
             ->get('sga.admin.filter')
+            // ->from($em, AppEntity::class, Settings::LIMIT, 0);
             ->from($em, AppEntity::class, $perPage, 
                         ($pageIdx-1)*$perPage,
                         ['context' => Settings::SGRS_CTX]);
@@ -55,6 +56,7 @@ class AppEntityController extends Controller {
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $userId = $this->getUser();
+            $entity->setContext(Settings::SGRS_CTX);
             $entity->setCreatedBy($userId);
             $entity->setCreatedAt(new \DateTime);
 

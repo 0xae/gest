@@ -54,7 +54,8 @@ class DocumentController extends Controller {
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity->setCreatedBy($this->getUser());            
+            $entity->setContext(Settings::SGRS_CTX);
+            $entity->setCreatedBy($this->getUser());
             $em->persist($entity);
             $em->flush();
             return $this->redirect($this->generateUrl('administration_Document_edit', 

@@ -62,10 +62,7 @@ class UserController extends Controller {
         
         if ($form->isValid() && $loginFieldsOk) {
             $em = $this->getDoctrine()->getManager();
-
-            if (!$entity->getContext()) {
-                $entity->setContext(Settings::SGRS_CTX);
-            }
+            $entity->setContext(Settings::SGRS_CTX);
             $entity->setEnabled(true);
             $user = $this->getUser();
             $entity->setCreatedBy($user);

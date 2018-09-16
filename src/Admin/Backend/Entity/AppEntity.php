@@ -22,21 +22,21 @@ class AppEntity {
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=45, nullable=false)
+     * @ORM\Column(name="name", type="string", length=250, nullable=false)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=45, nullable=true)
+     * @ORM\Column(name="description", type="text", length=400, nullable=true)
      */
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="codigo", type="string", length=45, nullable=false)
+     * @ORM\Column(name="codigo", type="string", length=400, nullable=false)
      */
     private $code;
 
