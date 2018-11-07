@@ -9,11 +9,14 @@ angular.module("app")
 
         CompBook.get(id)
         .then(function (data){
-            console.info(data);
+            console.info("Compbook: ", data);
             $scope.entity = data;    
             $scope.files = data.files;
             $scope.req.sendTo = data.sendTo;  
-            $scope.req.sendDate = data.sendDate;  
+            $scope.req.sendDate = data.sendDate;
+
+            $("#admin_backend_upload_reference").val(data.annexReference);
+            $("#admin_backend_upload_context").val(JSON.stringify({}));
             $(MODAL).modal();
         });
     }

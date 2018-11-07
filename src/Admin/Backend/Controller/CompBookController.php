@@ -24,6 +24,11 @@ class CompBookController extends Controller {
         $pageIdx = !array_key_exists('page', $_GET) ? 1 : $_GET['page'];
         $perPage = Settings::PER_PAGE;
 
+        $uploadObj = new CompBook;
+        $uploadObj->setId(1);
+        $uploadObj->setAnnexReference('AAA');
+        $uploadForm = $this->uploadForm($uploadObj);
+
         $q = $this->container
             ->get('sga.admin.filter')
             // ->from($em, CompBook::class, $perPage, ($pageIdx-1)*$perPage);
@@ -37,8 +42,8 @@ class CompBookController extends Controller {
 
         return $this->render('BackendBundle:CompBook:index.html.twig', array(
             'entities' => $entities,
-            'pageIdx' => $pageIdx
-            // 'paginate' => $fanta,
+            'pageIdx' => $pageIdx,
+            'upload_form' => $uploadForm
         ));
     }
 
@@ -83,6 +88,11 @@ class CompBookController extends Controller {
         $pageIdx = !array_key_exists('page', $_GET) ? 1 : $_GET['page'];
         $perPage = 10;
 
+        $uploadObj = new CompBook;
+        $uploadObj->setId(1);
+        $uploadObj->setAnnexReference('AAA');
+        $uploadForm = $this->uploadForm($uploadObj);
+
         $tpl = 'listing';
         $label = $state;
 
@@ -102,7 +112,8 @@ class CompBookController extends Controller {
             'objects' => $obj[0],
             'fanta' => $obj[1],
             'label' => $label,
-            'state' => $state            
+            'state' => $state,
+            'upload_form' => $uploadForm
         ));
     }
 
@@ -289,7 +300,7 @@ class CompBookController extends Controller {
 
         if (@$_GET['search']) {
             $entity->isDisabled=true;
-        }        
+        }
 
         $editForm = $this->createEditForm($entity);
 

@@ -243,6 +243,10 @@ class CompBook {
         return $this->id;
     }
 
+    public function setId($d) {
+        return $this->id=$d;
+    }
+
     /**
      * Set name
      * @param string $name

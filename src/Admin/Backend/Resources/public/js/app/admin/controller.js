@@ -149,4 +149,33 @@ angular.module("app")
             $.notify("A operacao nao pode ser efectuada.Tente novamente!", "danger");            
         });
     }
+}])
+
+.controller('NavbarController', ['$scope', function ($scope){
+    console.info("::NavbarController::");
+    var url = new URL(location.href);
+    var q=url.searchParams.get('q');
+
+    if (q) {
+        $scope.searchMode=true;
+        setTimeout(function(){
+            $("#query").val(q);
+        });
+    }
+
+    $scope.enableSearch = function () {
+        $scope.searchMode=true;
+    }
+
+    $scope.search = function() {
+        console.info('query: ',$scope.query);
+        var query=$("#query").val();
+        if (!query || query.trim().length==0) {
+            console.info(";NOP");
+            return;
+        }
+
+        console.info("do the search");
+        $('#search').submit();
+    }
 }]);

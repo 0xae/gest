@@ -83,6 +83,10 @@
 
                         <div role="tabpanel" class="tab-pane" id="annex">
                             {{ include('BackendBundle:Upload:listing-ng.html.twig') }}
+                            {{ include('BackendBundle:Upload:form.html.twig', {
+                                    'form' : upload_form
+                                })
+                            }}
                         </div>
 
                         <div role="tabpanel" class="tab-pane" id="acomp">

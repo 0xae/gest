@@ -19,18 +19,21 @@
 </a>
 
 <!-- Header Navbar: style can be found in header.less -->
-<nav class="navbar navbar-static-top" role="navigation" style="background-color: #fff">
+<nav class="navbar navbar-static-top" role="navigation" style="background-color: #fff"
+    ng-controller="NavbarController">
     <div class="row">
         <div class="col-md-9" style="text-align: center" ng-if="!searchMode">
             <h3 class="app-title">GESTÃO DE OCORRÊNCIAS ARFA</h3>
         </div>
         <div class="col-md-9" ng-if="searchMode">
             <div class="input-group" style="padding-top: 9px;padding-left: 11px;width:100%;">
-                <form action="{{path('backend_administration_search')}}" method="GET" style="display:inherit;">
+                <form id="search" action="{{path('backend_administration_search')}}" method="GET" 
+                      style="display:inherit;">
                     <span class="input-group-addon" id="basic-addon1" style="border:0px;padding:0px;">
                         <img class="user-image" src="{{ asset('icons/search.svg') }}" width="20" /> 
                     </span>
                     <input type="text"
+                        id="query"
                         class="form-control"
                         name="q"
                         placeholder="Pesquisar por queixas, reclamações, denuncias, ..."
@@ -44,10 +47,22 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <li ng-class="{'active-search': searchMode, 'user user-menu': true}" style="border-left: 1px solid #ddd;height:55px">
-                        <a href="#" ng-class="{'active-search': searchMode}" style="font-size:14px;border-left:0px;"
-                           ng-click="searchMode = !searchMode">                            
-                            <img class="user-image" ng-if="!searchMode" src="{{ asset('icons/search.svg') }}"  />
-                            <img class="user-image" ng-if="searchMode" src="{{ asset('icons/search-white.svg') }}"  />
+                        <a href="#" ng-class="{'active-search': searchMode}"
+                           ng-if="!searchMode"
+                           style="font-size:14px;border-left:0px;"
+                           ng-click="enableSearch()">
+                            <img class="user-image"                             
+                                src="{{ asset('icons/search.svg') }}"  
+                            />
+                        </a>
+
+                        <a href="#" class="active-search" 
+                           ng-if="searchMode"
+                           style="font-size:14px;border-left:0px;"
+                           ng-click="search()">
+                            <img class="user-image" 
+                                src="{{ asset('icons/search-white.svg') }}"
+                            />
                         </a>
                     </li>
 
