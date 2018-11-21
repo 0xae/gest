@@ -1,3 +1,7 @@
+backend_administration_Notification:
+    resource: "@BackendBundle/Resources/config/routing/notification.yml"
+    prefix:   /administration/Notification
+
 backend_administration_Order:
     resource: "@BackendBundle/Resources/config/routing/order.yml"
     prefix:   /administration/Order

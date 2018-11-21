@@ -4,6 +4,12 @@
 
 {% block content -%}
 
+{{ 
+    include('BackendBundle:Admin:notifications.html.twig', {
+        'context': 'comp_book'
+    })
+}}
+
 <div class="row" ng-controller="CompBookController">
     <div class="col-xs-12">
         <div class="box">

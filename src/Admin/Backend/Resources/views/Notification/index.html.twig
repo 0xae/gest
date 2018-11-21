@@ -1,0 +1,50 @@
+{% extends 'BackendBundle:Default:layout.html.twig' %}
+
+{% block content -%}
+
+<style>
+ul.pagination { margin-top:0px; }
+</style>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Notifica&ccedil;&otilde;es e Alertas</h3>
+
+                <div class="box-tools">
+                </div>
+            </div>
+            <!-- /.box-header -->
+
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover table-striped datatable">
+                    <thead>
+                        <tr>
+                            <th>Código #</th>
+                            <th>Data de recepção</th>
+                            <th>Data prevista de resposta</th>
+                            <th>Nome do utente</th>
+                            <th>Telefone/email</th>
+                            <th>Operador Económico</th>
+                            <th>Criado por</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+
+        {# {{ pagerfanta(paginate, 'twitter_bootstrap3', {
+                'next_message': 'Proximo',
+                'prev_message': 'Anterior'
+            }) 
+        }} #}
+        <!-- /.box -->
+    </div>
+</div>
+
+{% endblock %}

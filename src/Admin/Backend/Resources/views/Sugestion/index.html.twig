@@ -7,6 +7,12 @@ ul.pagination {
 }
 </style>
 
+{{ 
+    include('BackendBundle:Admin:notifications.html.twig', {
+        'context': 'sugestion'
+    })
+}}
+
 <div class="row" ng-controller="SugestionController">
     <div class="col-xs-12">
         <div class="box">

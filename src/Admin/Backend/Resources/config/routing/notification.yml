@@ -1,0 +1,30 @@
+administration_Notification:
+    path:     /
+    defaults: { _controller: "BackendBundle:Notification:index" }
+
+administration_Notification_show:
+    path:     /{id}/show
+    defaults: { _controller: "BackendBundle:Notification:show" }
+
+administration_Notification_new:
+    path:     /new
+    defaults: { _controller: "BackendBundle:Notification:new" }
+
+administration_Notification_create:
+    path:     /create
+    defaults: { _controller: "BackendBundle:Notification:create" }
+    methods:  POST
+
+administration_Notification_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BackendBundle:Notification:edit" }
+
+administration_Notification_update:
+    path:     /{id}/update
+    defaults: { _controller: "BackendBundle:Notification:update" }
+    methods:  [POST, PUT]
+
+administration_Notification_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BackendBundle:Notification:delete" }
+    methods:  [POST, DELETE]

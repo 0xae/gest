@@ -6,6 +6,12 @@
 ul.pagination { margin-top:0px; }
 </style>
 
+{{ 
+    include('BackendBundle:Admin:notifications.html.twig', {
+        'context': 'complaint'
+    })
+}}
+
 <div class="row">
     <div class="col-xs-12">
         <div class="box">

@@ -4,6 +4,12 @@
 
 {% block content -%}
 
+{{ 
+    include('BackendBundle:Admin:notifications.html.twig', {
+        'context': 'reclamation_internal'
+    })
+}}
+
 <div class="row" ng-controller="IReclController">
     <div class="col-xs-12">
         <div class="box">

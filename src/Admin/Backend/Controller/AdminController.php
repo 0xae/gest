@@ -56,7 +56,7 @@ class AdminController extends Controller {
         ));
     }
 
-   /**
+    /**
      * Fetches all permissions of a profile
      * @param User $entity The entity
      * @return \Symfony\Component\Form\Form The form

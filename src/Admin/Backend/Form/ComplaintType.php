@@ -30,6 +30,12 @@ class ComplaintType extends AbstractType {
                     'denuncia' => 'Denuncia'
                 ),
             ))
+            ->add('sector', 'choice', array(
+                'choices'  => array(
+                    'farm' => 'Farmacêutico',
+                    'alim' => 'Alimentar'
+                ),
+            ))
             ->add('complaintCategory')
             ->add('opName')
             ->add('opAddress', 'text', array(
@@ -48,6 +54,10 @@ class ComplaintType extends AbstractType {
             ->add('factLocality')
             ->add('factDetail', 'textarea', array(
                 'attr' => array('rows' => 6)
+            ))
+            ->add('sectorDescr', 'textarea', array(
+                'attr' => array('rows' => 3, 'cols'=>3),
+                'required'=>false
             ))
             ->add('hasProduct', 'choice', array(
                 'choices' => array(
@@ -69,7 +79,6 @@ class ComplaintType extends AbstractType {
                 'label' => 'Enviar formulário',
                 'attr' => array(
                     'class' => 'btn btn-success',
-                    'ng-click' => 'onSubmitForm()'
                 )
             ))
         ;

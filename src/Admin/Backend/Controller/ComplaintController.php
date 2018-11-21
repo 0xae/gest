@@ -322,7 +322,8 @@ class ComplaintController extends Controller {
      */
     public function newAction() {
         $entity = new Complaint();
-        $entity->setCreatedAt(new \DateTime);        
+        $entity->setCreatedAt(new \DateTime);
+        $entity->setSector('farm');  
         $form = $this->createCreateForm($entity);
 
         return $this->render('BackendBundle:Complaint:new.html.twig', array(
@@ -478,7 +479,7 @@ class ComplaintController extends Controller {
 
         $entity->setAnnexReference(md5(uniqid()));
         $entity->setFactDate(new \DateTime);
-        $entity->setComplaintCategory('{"asd": 123}');
+        $entity->setComplaintCategory('m1');
         $form = $this->createForm(new ComplaintType(), $entity, array(
             'action' => $this->generateUrl('administration_Complaint_create'),
             'method' => 'POST',

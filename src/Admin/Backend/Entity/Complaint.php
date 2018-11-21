@@ -142,6 +142,20 @@ class Complaint {
     /**
      * @var string
      *
+     * @ORM\Column(name="sector", type="text", nullable=false)
+     */
+    private $sector;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sector_descr", type="text", nullable=true)
+     */
+    private $sectorDescr;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="has_annex", type="boolean", nullable=true)
      */
     private $hasAnnex;
@@ -279,6 +293,24 @@ class Complaint {
     public function isDisabled() {
         return $this->isDisabled ||$this->state == Stage::RESPONDIDO ||
                 $this->state == Stage::SEM_RESPOSTA;
+    }
+
+    public function getSector() {        
+        return $this->sector;
+    }
+
+    public function setSector($value) {        
+        $this->sector = $value;
+        return $this;
+    }
+
+    public function getSectorDescr() {        
+        return $this->sectorDescr;
+    }
+
+    public function setSectorDescr($value) {        
+        $this->sectorDescr = $value;
+        return $this;
     }
 
     public function setResponseDate($value) {        

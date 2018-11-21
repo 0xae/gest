@@ -1,7 +1,10 @@
-{{ form_start(form) }}
+{{ form_start(form, {
+    'attr': {
+        'ng-submit': 'onSubmitForm'
+    }}) }}
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
     {# Identificação do utente #}
-    <div class="row">
+    <div class="row" ng-init="loadForm('{{entity.sector}}', '{{entity.complaintCategory}}', '{{entity.sectorDescr}}')">
         <div class="col-md-6">
             <div style="color: gray;margin-bottom: 20px;">
                 <span class="fa fa-user"></span>
@@ -76,22 +79,90 @@
                 }) }}
             </div>
 
-            <div class="form-group" ng-init="setCategory('{{entity.complaintCategory}}')">
-                <input type="checkbox" ng-model="categoryConf.cat_sf.active" ng-disabled="categoryConf.cat_sa.active || categoryConf.cat_sa.op1 || categoryConf.cat_sa.op2 || categoryConf.cat_sa.op3 || categoryConf.cat_sa.op4" />
-                <label>Setor Farmacêutico</label>
-                <div>
-                    <ul class="unstyled">
-                        <li><input type="checkbox" ng-model="categoryConf.cat_sf.op1" ng-disabled="categoryConf.cat_sa.active || categoryConf.cat_sa.op1 || categoryConf.cat_sa.op2 || categoryConf.cat_sa.op3 || categoryConf.cat_sa.op4 " /> Biocidas</li>
+            <div class="form-group">
+                <label>Sector</label>
+                {{ form_widget(form.sector, {
+                    'ng-model': 'entity_sector',
+                }) }}
 
-                        <li><input type="checkbox" ng-model="categoryConf.cat_sf.op2" ng-disabled="categoryConf.cat_sa.active || categoryConf.cat_sa.op1 || categoryConf.cat_sa.op2 || categoryConf.cat_sa.op3 || categoryConf.cat_sa.op4 " /> Medicamentos de Uso Humano</li>
+                <div style="margin-top: 20px;"></div>
+
+                <div ng-if="entity_sector=='farm'">
+                    <ul class="unstyled">
+                        <li><input type="radio" 
+                                value="m1"
+                                ng-checked="entity_cat.val=='m1'"
+                                ng-model="entity_cat.val"
+                            /> Biocidas</li>
+
+                        <li><input type="radio" 
+                                value="m2"
+                                ng-checked="entity_cat.val=='m2'"
+                                ng-model="entity_cat.val"
+                            /> Medicamentos de Uso Humano</li>
                         
-                        <li><input type="checkbox" ng-model="categoryConf.cat_sf.op3" ng-disabled="categoryConf.cat_sa.active || categoryConf.cat_sa.op1 || categoryConf.cat_sa.op2 || categoryConf.cat_sa.op3 || categoryConf.cat_sa.op4 " /> Produtos Cosméticos</li>
+                        <li><input type="radio" 
+                                value="m3"
+                                ng-checked="entity_cat.val=='m3'"
+                                ng-model="entity_cat.val"
+                            /> Produtos Cosméticos</li>
                         
-                        <li><input type="checkbox" ng-model="categoryConf.cat_sf.op4" ng-disabled="categoryConf.cat_sa.active || categoryConf.cat_sa.op1 || categoryConf.cat_sa.op2 || categoryConf.cat_sa.op3 || categoryConf.cat_sa.op4 " /> Produtos Químico-farmacêuticos</li>
+                        <li><input type="radio" 
+                                ng-checked="entity_cat.val=='m4'"
+                                ng-model="entity_cat.val"
+                                value="m4"
+                            /> Produtos Químico-farmacêuticos</li>
                         
-                        <li><input type="checkbox" uncheck ng-model="categoryConf.cat_sf.op5" ng-disabled="categoryConf.cat_sa.active || categoryConf.cat_sa.op1 || categoryConf.cat_sa.op2 || categoryConf.cat_sa.op3 || categoryConf.cat_sa.op4 " /> Outros</li>
+                        <li><input type="radio" 
+                                ng-checked="entity_cat.val=='m5'"
+                                ng-model="entity_cat.val"
+                                value="m5"
+                            /> Outros</li>
+
+                        <li ng-if="entity_cat.val=='m5'">
+                            <div>
+                                <textarea id="sector_descr1"
+                                rows="3"></textarea>
+                            </div>
+                        </li>
                     </ul>
                 </div>
+
+                <div ng-if="entity_sector == 'alim'">
+                    <ul class="unstyled">
+                        <li><input type="radio"  
+                            ng-checked="entity_cat.val=='a1'"
+                            ng-model="entity_cat.val"
+                            value="a1"
+                            /> Alimentos destinados ao Consumo Humano</li>
+                        
+                        <li><input type="radio"  
+                            ng-model="entity_cat.val"
+                            value="a2"
+                            ng-checked="entity_cat.val=='a2'"
+                            /> Suplementos e Aditivos Alimentares</li>
+                        
+                        <li><input type="radio" 
+                            ng-model="entity_cat.val"
+                            value="a3"
+                            ng-checked="entity_cat.val=='a3'"
+                            /> Alimentos com propriedades Funcionais</li>
+                        
+                        <li><input type="radio"
+                            ng-model="entity_cat.val"
+                            value="a4"
+                            ng-checked="entity_cat.val=='a4'"
+                            /> Outros</li>
+
+                        <li ng-if="entity_cat.val=='a4'">
+                            <div>
+                                <textarea id="sector_descr2"
+                                rows="3"></textarea>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
                 {{ form_widget(form.complaintCategory, {'attr': {
                     'style' : 'display: none',
                     'disabled' : entity.disabled
@@ -99,19 +170,6 @@
             </div>
 
             <div class="form-group">
-                <input type="checkbox" ng-model="categoryConf.cat_sa.active" ng-disabled="categoryConf.cat_sf.active || categoryConf.cat_sf.op1 || categoryConf.cat_sf.op2 || categoryConf.cat_sf.op3 || categoryConf.cat_sf.op4 || categoryConf.cat_sf.op5" />
-                <label>Setor Alimentar</label>
-                <div>
-                    <ul class="unstyled">
-                        <li><input type="radio" ng-model="categoryConf.cat_sa.op1" ng-disabled="categoryConf.cat_sf.active || categoryConf.cat_sf.op1 || categoryConf.cat_sf.op2 || categoryConf.cat_sf.op3 || categoryConf.cat_sf.op4 || categoryConf.cat_sf.op5 " /> Alimentos destinados ao Consumo Humano</li>
-                        
-                        <li><input type="radio" ng-model="categoryConf.cat_sa.op2" ng-disabled="categoryConf.cat_sf.active || categoryConf.cat_sf.op1 || categoryConf.cat_sf.op2 || categoryConf.cat_sf.op3 || categoryConf.cat_sf.op4 || categoryConf.cat_sf.op5 " /> Suplementos e Aditivos Alimentares</li>
-                        
-                        <li><input type="radio" ng-model="categoryConf.cat_sa.op3" ng-disabled="categoryConf.cat_sf.active || categoryConf.cat_sf.op1 || categoryConf.cat_sf.op2 || categoryConf.cat_sf.op3 || categoryConf.cat_sf.op4 || categoryConf.cat_sf.op5 " /> Alimentos com propriedades Funcionais</li>
-                        
-                        <li><input type="radio" ng-model="categoryConf.cat_sa.op4" ng-disabled="categoryConf.cat_sf.active || categoryConf.cat_sf.op1 || categoryConf.cat_sf.op2 || categoryConf.cat_sf.op3 || categoryConf.cat_sf.op4 || categoryConf.cat_sf.op5 " /> Outros</li>
-                    </ul>
-                </div>
             </div>
         </div>
 
@@ -237,11 +295,21 @@
             </div>
 
             <div class="form-group">
-                {{ form_widget(form.submit, {
-                    'attr' : {
-                        'disabled' : entity.disabled
-                    }
-                }) }}
+
+                <div class="hidden">
+                   {{ form_widget(form.submit, {
+                        'attr' : {
+                            'disabled' : entity.disabled
+                        }
+                    }) }}
+                    {{ form_widget(form.sectorDescr, {'attr': {
+                    }}) }}
+                </div>
+
+                <button type="button" class="btn btn-success btn" ng-click="onSubmitForm()">
+                    Enviar formulário
+                </button>
+
             </div>
         </div>
 
