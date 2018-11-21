@@ -8,13 +8,17 @@
              role="alert">
                 <span ng-if="N.days_left < 0">
                     Atenção!
+                    <strong>                        
                     <a href="./{{N.id}}/edit">{{N.type_label}} {{N.objcode}}</a>
+                    </strong>
                     &nbsp;devia ter sido respondida {{N.days_left*-1}} dias atras.
                 </span>
 
                 <span ng-if="N.days_left >= 0">
                     Lembrete: Faltam {{N.days_left}} dias para responder a&nbsp;
+                    <strong>                        
                     <a href="./{{N.id}}/edit">{{N.type_label}} {{N.objcode}}.</a>
+                    </strong>
                 </span>
         </div>
 
