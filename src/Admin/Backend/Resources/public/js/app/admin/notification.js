@@ -16,7 +16,8 @@ function ($scope, $http, $q) {
 
             console.info("Ary: ", ary);
             $scope.all_notifications = ary;
-            $scope.notifications = ary.slice(0, 2);
+            // $scope.notifications = ary.slice(0, 2);
+            $scope.notifications = ary;
         });
     }
 

@@ -82,7 +82,6 @@
                                  <img src="{{ asset_url }}" class="user-image" alt="User Image">
                                 {% endimage %}
                             {% endif %}
-                            {# <strong>{{ app.user.username }}/{{ app.user.entity.name }}</strong> #}
                         </a>
 
                         <ul class="dropdown-menu">
@@ -133,6 +132,50 @@
                             </li>
                         </ul>
                     </li>
+
+                    {% raw %}
+                    <li ng-controller="NotificationController" style="border-left: 1px solid #ddd;">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                            style="color: gray">
+                            <span class="glyphicon glyphicon-bell"
+                                style="font-size: 20px;"></span>
+                            <p style="display: inline;margin: 0px;margin-top: -15px;" class="">
+                                <span class="badge text-danger">{{notifications.length}}</span>
+                            </p>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <!-- Menu Footer-->
+                            <li class="user-footer" style="background-color: #fff;">
+                                <div class="container-fluid" 
+                                    style="background-color: #fff;padding:5px;min-width: 400px;max-height: 400px;overflow: scroll;overflow-x: hidden;">
+
+                                    <p class="text-center">Notifica&ccedil;&otilde;es</p>
+
+                                    <div class="alert"
+                                         ng-repeat="N in notifications"
+                                         ng-class="{'alert':true, 'alert-warning':N.days_left >= 0, 'alert-danger': N.days_left < 0}"
+                                         role="alert">
+                                            <span ng-if="N.days_left < 0">
+                                                Atenção! Ultrapassou o prazo de resposta da <strong>
+                                                <a href="./{{N.id}}/edit">{{N.objcode}}</a>
+                                                </strong>. Esta ocorr&ecirc;ncia deve ser tratada como uma NC.
+                                            </span>
+
+                                            <span ng-if="N.days_left >= 0">
+                                                <span class="glyphicon glyphicon-exclamation-sign"></span> 
+                                                Atenção! A <strong>                     
+                                                <a href="./{{N.id}}/edit">{{N.objcode}}.</a>
+                                                </strong> deve ser respondida em {{N.days_left}} dias.
+                                            </span>
+                                    </div>
+
+                                </div>
+                            </li>
+                        </ul>
+
+                    </li>
+                    {% endraw %}
                 </ul>
             </div>
         </div>
