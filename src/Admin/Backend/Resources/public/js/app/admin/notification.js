@@ -25,26 +25,35 @@ function ($scope, $http, $q) {
         $scope.notifications = $scope.all_notifications;
     }
 
+    // /arfa/web/app_dev.php/images/6a09227_arfa_1.jpg
+
+    function pad(n) {
+        var width=3;
+        var z = '0';
+        n = n + '';
+        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+    }
+
     function getObjCode(obj){
         console.info("obj: ", obj);
 
         if (obj.type=='queixa') {
-            return obj.id+'/QX/'+obj.department+'/'+obj.year;
+            return pad(obj.id)+'/QX/'+obj.department+'/'+obj.year;
 
         } else if (obj.type=='denuncia') {
-            return obj.id+'/DN/'+obj.department+'/'+obj.year;
+            return pad(obj.id)+'/DN/'+obj.department+'/'+obj.year;
 
         } else if (obj.type=='reclamacao') {
-            return obj.id+'/RE/'+obj.department+'/'+obj.year;
+            return pad(obj.id)+'/RE/'+obj.department+'/'+obj.year;
 
         } else if (obj.type=='sugestao') {
-            return obj.id+'/SG/'+obj.department+'/'+obj.year;
+            return pad(obj.id)+'/SG/'+obj.department+'/'+obj.year;
 
         } else if (obj.type=='reclamation_internal') {
-            return obj.id+'/RI/'+obj.department+'/'+obj.year;
+            return pad(obj.id)+'/RI/'+obj.department+'/'+obj.year;
 
         } else {
-            return '#'+obj.id;
+            return '#'+pad(obj.id);
         }
     }
 

@@ -133,7 +133,7 @@
                         </ul>
                     </li>
 
-                    {% raw %}
+{% raw %}
                     <li ng-controller="NotificationController" style="border-left: 1px solid #ddd;">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                             style="color: gray">
@@ -162,8 +162,13 @@
                                                 </strong>. Esta ocorr&ecirc;ncia deve ser tratada como uma NC.
                                             </span>
 
+{% endraw %}
                                             <span ng-if="N.days_left >= 0">
-                                                <span class="glyphicon glyphicon-exclamation-sign"></span> 
+                                                {% image '@BackendBundle/Resources/public/img/alert.png' %}
+                                                    <img src="{{ asset_url }}" width="25" />
+                                                {% endimage %}
+{% raw %}
+
                                                 Atenção! A <strong>                     
                                                 <a href="./{{N.id}}/edit">{{N.objcode}}.</a>
                                                 </strong> deve ser respondida em {{N.days_left}} dias.
@@ -175,7 +180,7 @@
                         </ul>
 
                     </li>
-                    {% endraw %}
+{% endraw %}
                 </ul>
             </div>
         </div>
