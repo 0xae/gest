@@ -34,16 +34,16 @@ class NotificationController extends Controller {
         }
 
         $SQL = "
-        select 
-            id, $oType as type,
-            created_at,
-            date_add(created_at, interval 15 day) as resp_date,
-            state, 
-            datediff(date_add(created_at, interval $days day), date_format(now(), '%Y-%m-%d')) as days_left,
-            (select codigo from app_entity where id = (select entity from user where id=T.created_by)) as department,
-            date_format(created_at, '%Y') as year
-        from $type T
-        where response_date is null and state!='nao_conformidade'
+            select 
+                id, $oType as type,
+                created_at,
+                date_add(created_at, interval 15 day) as resp_date,
+                state, 
+                datediff(date_add(created_at, interval $days day), date_format(now(), '%Y-%m-%d')) as days_left,
+                (select codigo from app_entity where id = (select entity from user where id=T.created_by)) as department,
+                date_format(created_at, '%Y') as year
+            from $type T
+            where response_date is null
         ;";
 
         $stmt = $em->getConnection()->prepare($SQL);
