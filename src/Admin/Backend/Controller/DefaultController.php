@@ -42,8 +42,8 @@ class DefaultController extends Controller {
             (int) $this->count(Model::COMP_BOOK, 'comp_book')[0]['count'],          
             (int) $this->countIRECL(),
         ];
-        var_dump($all);
-        die;
+        // var_dump($all);
+        // die;
 
         $params=['state'=>Stage::RESPONDIDO];
         $answered = [
