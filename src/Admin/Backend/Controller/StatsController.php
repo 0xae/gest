@@ -15,10 +15,12 @@ use Admin\Backend\Form\CategoryType;
  */
 class StatsController extends Controller {
     public function indexAction() {
-		$pie = $this->getTypeDistribution('2018-01-01', '2018-04-01');
+    	$start=date('Y-01-01');
+    	$end=date('Y-12-31');
+		$pie = $this->getTypeDistribution($start, $end);
 
         return $this->render('BackendBundle:Stats:index.html.twig', array(
-			'thirdy_party' => $this->getThirdPartyCounts('2018-01-01', '2018-04-01'),
+			'thirdy_party' => $this->getThirdPartyCounts($start, $end),
 			'pie' => $pie['pie']
         ));
 	}

@@ -35,7 +35,7 @@ class SugestionController extends Controller {
         //     ->get('sga.admin.table.pagination')
         //     ->fromQuery($q, $perPage, $pageIdx);
 
-        $entities = $q->getResult();
+        $entities = $q[1];
 
         return $this->render('BackendBundle:Sugestion:index.html.twig', array(
             'entities' => $entities,
@@ -107,7 +107,7 @@ class SugestionController extends Controller {
 
         $obj = $this->container
             ->get('sga.admin.filter')
-            ->ByState($em, 'Sugestion', $state);
+            ->ByState($em, Sugestion::class, $state);
 
         return $this->render('BackendBundle:Sugestion:' . $tpl . '.html.twig', array(
             'objects' => $obj[0],

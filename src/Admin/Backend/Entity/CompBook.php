@@ -156,6 +156,10 @@ class CompBook {
      */
     private $responseDate;
 
+    private $isDisabled=false;
+
+    private $_respDate='NONE';    
+
     public function setResponseDate($value) {        
         $this->responseDate = $value;
         return $this;
@@ -218,17 +222,23 @@ class CompBook {
 		return $this->complaintDate;
     }
     
-    public $isDisabled=false;    
     public function isDisabled() {
         return $this->isDisabled ||
             $this->state == Stage::RESPONDIDO ||
             $this->state == Stage::SEM_RESPOSTA;
     }
 
+    public function setRespDate($value='')
+    {
+        # code...
+        $this->_respDate=$value;
+    }
+
     public function getRespDate(){
-        $date = clone $this->createdAt;
-        $date->add(new \DateInterval("P10D"));
-        return $date;
+        // $date = clone $this->createdAt;
+        // $date->add(new \DateInterval("P10D"));
+        // return $date;
+        return $this->_respDate;
 	}
 
 	public function setComplaintDate($complaintDate){

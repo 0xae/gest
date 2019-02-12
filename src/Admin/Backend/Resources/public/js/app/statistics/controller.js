@@ -4,6 +4,7 @@ function ($scope, Statistics) {
     console.info("--- init statistics controller ---");
     var startMonth=moment().format("YYYY-MM-DD");
     var endMonth=moment(startMonth).add('1', 'month').format('YYYY-MM-DD');
+    var currYear=moment().format('YYYY');
 
     $('input[name="daterange"]').daterangepicker({
         locale: {
@@ -36,7 +37,7 @@ function ($scope, Statistics) {
                 "Dezembro"
             ],
         },
-        "linkedCalendars": false,
+        linkedCalendars: false,
         startDate: startMonth,
         endDate: endMonth
     }, function(start, end, label) {
@@ -130,15 +131,7 @@ function ($scope, Statistics) {
                 "Tempo médio de resposta por direção",
                 categories, 
                 series
-            );            
-
-            // Statistics.renderBar('',
-            //     'Dias',
-            //     '',
-            //     'responseAvg',
-            //     ["Dias"],
-            //     render
-            // );
+            );
         });
     }
 
@@ -253,7 +246,7 @@ function ($scope, Statistics) {
         });
     }
 
-    renderPerMonth(2018);
+    renderPerMonth(currYear);
     renderByDepartments(startMonth+" 00:00:00", endMonth+" 23:59:59");
     renderResponseTimeAvg(startMonth+" 00:00:00", endMonth+" 23:59:59");
     renderImcumprimentoPerDirection(startMonth+" 00:00:00", endMonth+" 23:59:59");

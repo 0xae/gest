@@ -14,7 +14,6 @@ function ($scope, $http, $q) {
                 N.type_label = getTypeLabel(ctx, N.type);
             });
 
-            console.info("Ary: ", ary);
             $scope.all_notifications = ary;
             // $scope.notifications = ary.slice(0, 2);
             $scope.notifications = ary;
@@ -35,8 +34,6 @@ function ($scope, $http, $q) {
     }
 
     function getObjCode(obj){
-        console.info("obj: ", obj);
-
         if (obj.type=='queixa') {
             return pad(obj.id)+'/QX/'+obj.department+'/'+obj.year;
 

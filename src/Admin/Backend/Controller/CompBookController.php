@@ -38,7 +38,7 @@ class CompBookController extends Controller {
         //     ->get('sga.admin.table.pagination')
         //     ->fromQuery($q, $perPage, $pageIdx);
 
-        $entities = $q->getResult();
+        $entities = $q[1];
 
         return $this->render('BackendBundle:CompBook:index.html.twig', array(
             'entities' => $entities,
@@ -106,7 +106,7 @@ class CompBookController extends Controller {
 
         $obj = $this->container
             ->get('sga.admin.filter')
-            ->ByState($em, 'CompBook', $state);
+            ->ByState($em, CompBook::class, $state);
 
         return $this->render('BackendBundle:CompBook:' . $tpl . '.html.twig', array(
             'objects' => $obj[0],

@@ -1,9 +1,9 @@
 <?php
-
 namespace Admin\Backend\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Admin\Backend\Entity\Category;
 use Admin\Backend\Form\CategoryType;
@@ -12,9 +12,7 @@ use Admin\Backend\Form\CategoryType;
  * Category controller.
  *
  */
-class CategoryController extends Controller
-{
-
+class CategoryController extends Controller {
     /**
      * Lists all Category entities.
      *
@@ -30,15 +28,23 @@ class CategoryController extends Controller
 
         $fanta = $this->container
             ->get('sga.admin.table.pagination')
-            ->fromQuery($q, $perPage, $pageIdx);
+            ->fromQuery($q[0], $perPage, $pageIdx);
 
-        $entities = $q->getResult();         
+        $entities = $q[1];
 
-        return $this->render('BackendBundle:Category:index.html.twig', array(
-            'entities' => $entities,
-            'paginate' => $fanta
-        ));
+        // $entities = $q->getResult();
+        if (array_key_exists('resp', $_GET) && $_GET['resp']=='json') {
+            return new JsonResponse($entities);
+
+        } else {
+            return $this->render('BackendBundle:Category:index.html.twig', array(
+                'entities' => $entities,
+                'paginate' => $fanta
+            ));
+        }
+
     }
+
     /**
      * Creates a new Category entity.
      *
@@ -51,13 +57,13 @@ class CategoryController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $userId = $this->getUser();
+            $userId = $this->getUser()->getId();
             $entity->setCreatedBy($userId);
             $entity->setCreatedAt(new \DateTime);
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('administration_Category_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('administration_Category', array('is_new' => 1)));
         }
 
         return $this->render('BackendBundle:Category:new.html.twig', array(
@@ -89,10 +95,9 @@ class CategoryController extends Controller
      * Displays a form to create a new Category entity.
      *
      */
-    public function newAction()
-    {
+    public function newAction() {
         $entity = new Category();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('BackendBundle:Category:new.html.twig', array(
             'entity' => $entity,
@@ -104,10 +109,8 @@ class CategoryController extends Controller
      * Finds and displays a Category entity.
      *
      */
-    public function showAction($id)
-    {
+    public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('BackendBundle:Category')->find($id);
 
         if (!$entity) {
@@ -117,7 +120,7 @@ class CategoryController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('BackendBundle:Category:show.html.twig', array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -126,10 +129,8 @@ class CategoryController extends Controller
      * Displays a form to edit an existing Category entity.
      *
      */
-    public function editAction($id)
-    {
+    public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('BackendBundle:Category')->find($id);
 
         if (!$entity) {
@@ -198,24 +199,21 @@ class CategoryController extends Controller
      * Deletes a Category entity.
      *
      */
-    public function deleteAction(Request $request, $id)
-    {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+    public function deleteAction(Request $request, $id) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('BackendBundle:Category')->find($id);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('BackendBundle:Category')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Category entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Category entity.');
         }
 
-        return $this->redirect($this->generateUrl('administration_Category'));
+        $em->remove($entity);
+        $em->flush();
+
+        return new JsonResponse([
+            'id'=>$id,
+            'status' => 'deleted'
+        ]);
     }
 
     /**

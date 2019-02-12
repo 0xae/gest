@@ -29,6 +29,14 @@
                         {# <span>{{ app.request.attributes.get("_route") }}</span> #}
                         <span>Gest&atilde;o de Acesso</span></a>
                     </li>
+                    <li>
+                        <a href="{{ path('administration_Category') }}#">
+                        <svg id="meter" class="circle-html5" 
+                            fill={{ app.request.attributes.get("_route") == 'backend_administration_main' ? '#00a65a' : '#ccc' }}>
+                            <circle r="4" cx="50%" cy="50%"></circle>
+                        </svg>
+                        <span>Feriados</span></a>
+                    </li>
                 </ul>
             </li>
         {% endif %}

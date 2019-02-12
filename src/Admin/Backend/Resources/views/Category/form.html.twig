@@ -2,19 +2,31 @@
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
     <div class="row">
         <div class="col-md-12">
-                                                        <div class="form-group">
-                    <label>name</label>
-                    {{ form_widget(form.name) }}
+            <div class="form-group">
+                <label>Data</label>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">
+                        <span class="fa fa-calendar"></span>
+                    </span>
+                    {{ form_widget(form.name, {
+                        'attr': {
+                            required: true
+                        }
+                    }) }}
                 </div>
-                                                <div class="form-group">
-                    <label>createdAt</label>
-                    {{ form_widget(form.createdAt) }}
-                </div>
-                                                <div class="form-group">
-                    <label>createdBy</label>
-                    {{ form_widget(form.createdBy) }}
-                </div>
-                            </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+        {{ form_widget(form.submit, {
+            'label' : 'Enviar formulario',
+            'attr': {
+                'class' : 'btn btn-success'
+            }
+        }) }}
+        </div>
+
+
         {{ form(form) }}
     </div>    
 {{ form_end(form) }}

@@ -2,17 +2,17 @@
 
 {% block content -%}
 
-    <div class="row">
+    <div class="row" ng-controller="Category2Controller">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Listagem de Category</h3>
+                    <h3 class="box-title">Listagem de Feriados</h3>
 
                     <div class="box-tools">
                         <a class="btn btn-primary" 
                         href="{{ path('administration_Category_new') }}">
                             <span class="glyphicon glyphicon-plus"></span>
-                            Criar Category
+                            Criar Feriado
                         </a>
                     </div>
                 </div>
@@ -21,28 +21,45 @@
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover table-striped">
                         <thead>
-                            <tr>                                        <th>ID#</th>
-                                    <th>Name</th><th>Createdat</th><th>Createdby</th>                                <th></th>
+                            <tr>                                        
+                                <th>Data</th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for entity in entities %}
-                                <tr>                                                                                    <td>
-                                                <a href="{{ path('administration_Category_show', { 'id': entity.id }) }}">
-                                                #{{ entity.id }}
-                                                </a>
-                                            </td>                                                                                    <td>{{ entity.name }}</td>                                                                                    <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>                                                                                    <td>{{ entity.createdBy }}</td>                                            <td><a href="{{ path('administration_Category_edit', { 'id': entity.id }) }}">
-<span class="badge badge-primary">
-        EDITAR
-</span>
-</a>
-                                            </td>                                </tr>
+                                <tr id="holy-{{entity.id}}">
+                                    <td>
+                                        <span class="text-info fa fa-calendar"></span>
+                                        {{ entity.name }}
+                                    </td>                                                                                    
+                                    <td></td>
+                                    <td>
+                                        <a href="{{ path('administration_Category_edit', { 'id': entity.id }) }}">
+                                        <span class="label label-primary">
+                                            EDITAR
+                                        </span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="" ng-click="delete_holy({{entity.id}})">
+                                        <span class="label label-danger">
+                                            ELIMINAR
+                                        </span>
+                                        </a>
+                                    </td>
+                                </tr>
                             {% endfor %}
                         </tbody>
                     </table>
 
                     {% if entities %}
-                        {{ pagerfanta(paginate, 'twitter_bootstrap3') }}
+                        {{ pagerfanta(paginate, 'twitter_bootstrap3', {
+                                'next_message': 'Proximo',
+                                'prev_message': 'Anterior'
+                            }) 
+                        }}
                     {% endif %}
                 </div>
                 <!-- /.box-body -->

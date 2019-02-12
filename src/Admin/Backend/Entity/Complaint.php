@@ -349,11 +349,17 @@ class Complaint {
         return $this->annexReference;
     }
 
+    private $_respDate='NONE';
     public function getRespDate(){
-        $date = clone $this->createdAt;
-        $date->add(new \DateInterval("P15D"));
-        return $date;
+        // $date = clone $this->createdAt;
+        // $date->add(new \DateInterval("P15D"));
+        // return $date;
+        return $this->_respDate;
 	}
+
+    public function setRespDate($d) {
+        $this->_respDate=$d;
+    }
 
     /**
      * @ORM\Column(name="complaint_category", type="text",  nullable=true)

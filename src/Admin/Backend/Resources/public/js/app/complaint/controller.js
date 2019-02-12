@@ -4,6 +4,7 @@ function ($http, $scope, UploadService, $timeout) {
     var url = new URL(location.href);
     var isNew=url.searchParams.get('is_new');
     var uploadedAdded=url.searchParams.get('upload_added');
+    this.$onInit = init;
     $scope.entity_cat = {val: 'm1'}
     $scope.sector_descr1='Outros'
     $scope.sector_descr2='Outros';
@@ -35,6 +36,11 @@ function ($http, $scope, UploadService, $timeout) {
         $scope.entity_sector=tgt.target.value;
         $scope.$apply();
     });
+
+    function init() {
+        // body...
+        console.info("onInit:: yesss");
+    }
 
     $scope.onSubmitForm = function() {
         // console.info($scope.categoryConf);

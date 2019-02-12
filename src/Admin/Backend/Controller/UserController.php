@@ -44,7 +44,7 @@ class UserController extends Controller {
             $form->get('email')
                 ->addError(new FormError('Email nao disponivel!'));
             $loginFieldsOk = false;
-        } 
+        }
 
         if ($this->alreadyExists('username', $entity->getUsername())) {
             $form->get('username')
@@ -91,8 +91,8 @@ class UserController extends Controller {
         ));
     }
 
-    private function alreadyExists($field, $value) {        
-        $em = $this->getDoctrine()->getManager();        
+    private function alreadyExists($field, $value) {
+        $em = $this->getDoctrine()->getManager();
         $resp = $em->getRepository('BackendBundle:User')
             ->findBy([$field=>$value]);
         return $resp;

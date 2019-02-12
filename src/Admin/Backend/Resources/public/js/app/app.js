@@ -1,5 +1,32 @@
 angular.module('app', []);
 
+angular.module('app')
+.controller('Category2Controller', [
+    '$scope', '$http',
+    function ($scope, $http) {
+        $scope.delete_holy = function(id) {
+            if (!confirm('Deseja mesmo eliminar esta data?')) {
+                return;
+            }
+
+            $http.post('./'+id+'/delete')
+            .then(function (Resp){
+                var data=Resp.data;
+                if (data.status=='deleted') {
+                    var to_delete="#holy-"+id;
+                    $(to_delete).fadeOut(350);
+                    $.notify("Eliminado com sucesso", "success");
+                } else {
+                    $.notify("Nao foi possivel eliminar este objecto. Tente de novo", "danger");
+                }
+            }, function (Err){
+                $.notify("Nao foi possivel eliminar este objecto. Tente de novo", "danger");
+                console.error('Err: ', Err);
+            });
+        }
+    }
+]);
+
 $("#business-privacy-descr").trumbowyg({
     btnsAdd: ['foreColor', 'backColor']
 }).on('tbwchange', function(e){
@@ -64,9 +91,57 @@ $(document).ready(function() {
             }
         }        
     });
+
+    var currYear=moment().format('YYYY');
+
+    $('#admin_backend_category_name').daterangepicker({
+        locale: {
+            format: 'DD/MM/YYYY',
+        },
+        singleDatePicker: true,
+        showDropdowns: true,
+        minYear: currYear,
+        maxYear: parseInt(currYear, 10),
+        "applyLabel": "Aplicar",
+        "cancelLabel": "Cancelar",
+        "fromLabel": "Comeco",
+        "toLabel": "Fim",
+        "daysOfWeek": [
+            "Dom",
+            "Seg",
+            "Ter",
+            "Qua",
+            "Qui",
+            "Sex",
+            "Sab"
+        ],
+        "monthNames": [
+            "Janeiro",
+            "Fevereiro",
+            "Março",
+            "Abril",
+            "Maio",
+            "Junho",
+            "Julho",
+            "Agosto",
+            "Setembro",
+            "Outubro",
+            "Novembro",
+            "Dezembro"
+        ],
+    }, function(start, end, label) {
+        // var years = moment().diff(start, 'years');
+        setTimeout(function () {
+            // body...
+            var date=moment(start).format('DD/MM/YYYY');
+            $('#admin_backend_category_name').val(date);
+            console.info('date: ', date);
+        }, 0);
+    });
 });
 
 
 $("input[data-disabled='data-disabled'], select[data-disabled='data-disabled']").each(function (){
     $(this).attr("ng-disabled", "true");
 });
+

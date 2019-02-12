@@ -25,10 +25,9 @@ class ComplaintController extends Controller {
 
         $q = $this->container
             ->get('sga.admin.filter')
-            // ->from($em, Complaint::class, $perPage, ($pageIdx-1)*$perPage);
             ->from($em, Complaint::class, Settings::LIMIT, 0);
 
-        $entities = $q->getResult();
+        $entities = $q[1];
 
         return $this->render('BackendBundle:Complaint:index.html.twig', array(
             'entities' => $entities,
@@ -134,7 +133,7 @@ class ComplaintController extends Controller {
 
         $obj = $this->container
             ->get('sga.admin.filter')
-            ->ByState($em, 'Complaint', $state);
+            ->ByState($em, Complaint::class, $state);
 
         return $this->render('BackendBundle:Complaint:' . $tpl . '.html.twig', array(
             'objects' => $obj[0],

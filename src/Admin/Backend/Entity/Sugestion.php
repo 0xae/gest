@@ -302,10 +302,17 @@ class Sugestion {
 		$this->parDate = $date;
 	}
 
+    private $_respDate='NONE';
+    public function setRespDate($value)
+    {
+        # code...
+        $this->_respDate=$value;
+    }
+
     public function getRespDate(){
-        $date = clone $this->createdAt;
-        $date->add(new \DateInterval("P15D"));
-        return $date;
+        // $date = clone $this->createdAt;
+        // $date->add(new \DateInterval("P15D"));
+        return $this->_respDate;
 	}
 
     public function getParType(){
