@@ -43,6 +43,9 @@ class DefaultController extends Controller {
             (int) $this->countIRECL(),
         ];
 
+        // var_dump($all);
+        // die;
+
         $params=['state'=>Stage::RESPONDIDO];
         $answered = [
             (int) $this->count(Model::DENOUNCE, 'complaint', $params),
@@ -117,21 +120,21 @@ class DefaultController extends Controller {
     private function countIRECL($opts=[]) {
         $q = '
             select 
-                count(1) as count,
-                date_format(created_at, "%Y-%m") as period
+                id
             from reclamation_internal
             where year(created_at) = year(current_date)
                 and month(created_at) = month(current_date) '
             ;
 
         $params = [];
-            
+
         if (@$opts['state']) {
             $q .= ' and state=:state ';
             $params['state']=$opts['state'];
         }
 
-        return $this->fetchAll($q, $params);
+        $rows=$this->fetchAll($q, $params);
+        return count($rows);
     }
 
     private function fetchAll($sql, $params) {
