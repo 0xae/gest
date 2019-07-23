@@ -34,9 +34,9 @@ class AppEntityController extends Controller {
 
         $fanta = $this->container
             ->get('sga.admin.table.pagination')
-            ->fromQuery($q, $perPage, $pageIdx);
+            ->fromQuery($q[0], $perPage, $pageIdx);
         
-        $entities = $q->getResult();
+        $entities = $q[1];
 
         return $this->render('BackendBundle:AppEntity:index.html.twig', array(
             'entities' => $entities,

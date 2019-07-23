@@ -33,8 +33,8 @@ class AdminController extends Controller {
         }
 
         return $this->render('BackendBundle:Admin:index.html.twig', array(
-            'user_list' => $users->getResult(),
-            'profile_list' => $profiles->getResult(),
+            'user_list' => $users[1],
+            'profile_list' => $profiles[1],
             'user_form' => $userForm->createView(),            
             'profile_form' => $profileForm->createView(),            
             'assoc_profile_form' => $assocProfile->createView(),
